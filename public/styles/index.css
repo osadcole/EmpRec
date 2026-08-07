@@ -1,0 +1,129 @@
+#benefits  {
+    background-image: url("../images/homepage-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2em;
+    padding: 0 10em;
+    font-family: "Varela Round", sans-serif;
+    color: rgb(25, 43, 149);
+}
+
+#benefits h2 {
+    font-size: 5em;
+    font-weight: bold;
+}
+
+#benefits p {
+    font-size: 2em;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+#new-employees {
+    background-color: rgb(209, 241, 255);
+    box-shadow: 0px 50px 50px -40px rgba(48, 91, 145, 0.43);
+}
+
+#new-employees h2 {
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
+    font-size: 2.5em;
+    color: var(--primary);
+    padding: 1em 0 1em;
+    text-align: center;
+}
+
+#search-employees h2 {
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
+    font-size: 2.5em;
+    color: var(--primary);
+    padding: 1em 0 1em;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+
+#new-employees ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 1em 0 2em;
+}
+
+#new-employees ol article {
+    background: rgb(241, 241, 241);
+    min-width: 14rem;
+    max-width: 20rem;
+    border-radius: 1em;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+    box-shadow: 0 5px 27px rgba(31, 54, 152, 0.1);
+}
+
+#new-employees ol article:hover {
+    transform: translateY(-0.5rem) scale(1.04);
+    box-shadow: 4px 5px 20px -1px rgba(0, 42, 255, 0.25);
+}
+
+#new-employees ol article h4 {
+    color: var(--primary);
+    margin-bottom: 0.5em;
+    font-size: 1.27em;
+    font-family: "Varela Round", sans-serif;
+}
+
+#new-employees ol article ul{
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#new-employees ol article a {
+    background: var(--primary);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 0.5em 1.1em;
+    border-radius: 0.5em;
+    box-shadow: 0 1px 4px rgba(44,86,255,0.10);
+}
+
+#new-employees ol article a:hover {
+    background: var(--link-hover);
+}
+
+@media (max-width: 700px) {
+    #new-employees ol {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    #new-employees ol article {
+        min-width: 14rem;
+    }
+    #benefits {
+        padding: 1.5em 1em;
+        min-height: 75vh;
+        gap: 0.5em;
+    }
+    #benefits h2 {
+        font-size: 2.5em;
+    }
+    #benefits p {
+        font-size: 1em;
+        font-weight: bold;
+        padding: 0.5em 0.7em;
+    }
+}

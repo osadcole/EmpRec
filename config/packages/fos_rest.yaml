@@ -1,0 +1,16 @@
+fos_rest:
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: true
+        mime_types:
+            xml: ['application/xml', 'text/xml']
+
+    body_converter:
+        enabled: false
+
+    format_listener:
+        rules:
+            - { path: '^/api', prefer_extension: false, fallback_format: json, priorities: [ json, xml ] }
+            - { path: '^/', prefer_extension: true, fallback_format: html, priorities: [ html, '*/*' ] }

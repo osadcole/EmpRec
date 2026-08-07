@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>EmpRecs - {{ page_title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/style.css') }}">
+    {% block header %}{% endblock %}
+</head>
+<body>
+<header>
+    <hgroup>
+        <h1><a href="{{ path('index') }}" id="logo">EmpRecs</a></h1>
+        <p>Application for employee records management</p>
+    </hgroup>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ path('index') }}">Home</a>
+            </li>
+            <li class="dropdown-contacts">
+                <button id="dropdown-expand-btn" aria-expanded="false">
+                    Contacts
+                </button>
+                <dl id="dropdown-contacts-content" class="hidden">
+                    <dt>
+                        Support email
+                    </dt>
+                    <dd>
+                        <a href="mailto:support@mail.com">support@mail.com</a>
+                    </dd>
+                    <dt>
+                        Support phone
+                    </dt>
+                    <dd>
+                        <a href="tel:+420123456789">+420 123 456 789</a>
+                    </dd>
+                    <dt>
+                        Address
+                    </dt>
+                    <dd>
+                        12345 Pike St, Seattle, USA
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <a href="{{ path('employees_index') }}">Employees</a>
+            </li>
+            <li>
+                <a href="#">My profile</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<footer>
+    <address>
+        <p>Contact technical support:</p>
+        <ol>
+            <li>
+                <a href="mailto:support@mail.com">support@mail.com</a>
+            </li>
+            <li>
+                <a href="tel:+420123456789">+420 123 456 789</a>
+            </li>
+        </ol>
+    </address>
+    <p>&copy; osadcole</p>
+</footer>
+<script src="{{ asset('js/dropdownContacts.js') }}"></script>
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

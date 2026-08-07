@@ -1,0 +1,71 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Accounts' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/accounts.css') }}">
+{% endblock %}
+{% block content %}
+    {% if employee.getAccounts()|length %}
+        <h1>{{ employee.name }} {{ employee.surname }}'s accounts</h1>
+        <div class="actions">
+            <a class="btn-add" href="{{ path('account_create') }}">
+                + Add account
+            </a>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Account</th>
+                <th>Username</th>
+                <th>Expiration date</th>
+                <th id="edit-column-header">Edit</th>
+                <th id="delete-column-header">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for account in accounts %}
+                <tr>
+                    <td data-label="Account">{{ account.name }}</td>
+                    <td data-label="Username">{{ account.username }}</td>
+                    <td data-label="Expiration date">
+                        {% if account.validTo is not null %}
+                            <time datetime="{{ account.validTo|date('Y-m-d') }}">{{ account.validTo|date('Y-m-d') }}</time>
+                        {% else %}
+                            Permanent
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn" href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn delete-account-btn" href="{{ path('account_delete', { 'id': account.id }) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {% if pageCnt != 1 %}
+            <nav class="pagination-bar">
+                {% if page > 1 %}
+                    <a href="{{ path('accounts', { id: employee.id, page: page - 1, limit: limit }) }}">&lsaquo; Prev</a>
+                {% endif %}
+                <p>Page {{ page }} / {{ pageCnt }}</p>
+                {% if page < pageCnt %}
+                    <a href="{{ path('accounts', { id: employee.id, page: page + 1, limit: limit }) }}">Next &rsaquo;</a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    {% else %}
+        <h1>{{ employee.name }} {{ employee.surname }} has no accounts</h1>
+        <div class="actions">
+            <a class="btn-add" href="{{ path('account_create') }}">
+                + Add account
+            </a>
+        </div>
+    {% endif %}
+    {% include 'account/delete.html.twig' %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('js/deleteAccount.js') }}"></script>
+{% endblock %}
+

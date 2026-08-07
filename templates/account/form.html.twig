@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+{% if not toDelete %}
+    {% set page_title = 'Create account' %}
+{% else %}
+    {% set page_title = 'Delete account' %}
+{% endif %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/accounts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/forms.css') }}">
+{% endblock %}
+{% block content %}
+    {% if not toDelete %}
+        {{ form(accountForm) }}
+    {% else %}
+        <div class="warning">
+            {{ form_start(accountForm) }}
+            <h1>Are you sure you want to delete this account?</h1>
+            <div class="actions">
+                <a class="btn" href="{{ path('accounts', { id: accountForm.vars.value.employee.id }) }}">Cancel</a>
+                {{ form_widget(accountForm.delete) }}
+            </div>
+            {{ form_end(accountForm) }}
+        </div>
+    {% endif %}
+{% endblock %}

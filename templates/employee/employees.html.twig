@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Employees' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/employees.css') }}">
+{% endblock %}
+{% block content %}
+    {% if employees %}
+        <h1>Our employees</h1>
+    {% else %}
+        <h1>There are no employees yet</h1>
+    {% endif %}
+        <div class="actions">
+            <details class="search-bar">
+                <summary class="btn-search">Search employees</summary>
+                {{ render(path('employee_search_form')) }}
+            </details>
+            <a class="btn-add" href="{{ path('role_create') }}">
+                + Add Role
+            </a>
+            <a class="btn-add" href="{{ path('employee_create') }}">
+                + Add employee
+            </a>
+        </div>
+    {% if employees %}
+        <ul>
+            {% for employee in employees %}
+                <li>
+                    <article>
+                        <img src="{{ asset(employee.photo ?: 'images/default-profile-image.jpg') }}" alt="employee image" >
+                        <h2>{{ employee.surname }} {{ employee.name }}</h2>
+                        <ul>
+                            {% for role in employee.getRoles() %}
+                                <li><p>{{ role.title }}</p></li>
+                            {% endfor %}
+                        </ul>
+                        {% if employee.email is not null %}
+                            <a href="mailto:{{ employee.email }}">{{ employee.email }}</a>
+                        {% endif %}
+                        <ul class="action-list">
+                            <li><a class="btn-details" href="{{ path('employee_show', { 'id': employee.id }) }}">Details</a></li>
+                            <li><a class="btn-edit" href="{{ path('employee_edit', { 'id': employee.id }) }}">Edit</a></li>
+                        </ul>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if pageCnt != 1 %}
+            <nav class="pagination-bar">
+                {% if page > 1 %}
+                    <a href="{{ path('employees_index', { page: page - 1, limit: limit }) }}">&lsaquo; Prev</a>
+                {% endif %}
+                <p>Page {{ page }} / {{ pageCnt }}</p>
+                {% if page < pageCnt %}
+                    <a href="{{ path('employees_index', { page: page + 1, limit: limit }) }}">Next &rsaquo;</a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    {% endif %}
+{% endblock %}

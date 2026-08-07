@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Delete employee' %}
+{% block header %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/employees.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/forms.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="warning">
+        {{ form_start(employeeForm) }}
+        <h1>Are you sure you want to delete this employee?</h1>
+        <div class="actions">
+            <a class="btn" href="{{ path('employee_show', { id: employeeForm.vars.value.id }) }}">Cancel</a>
+            {{ form_widget(employeeForm.delete) }}
+        </div>
+        {{ form_end(employeeForm) }}
+    </div>
+{% endblock %}
+

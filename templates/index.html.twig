@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Home' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/index.css') }}">
+{% endblock %}
+{% block content %}
+    <section id="benefits">
+        <h2>Main benefits</h2>
+        <p>EmpRecs helps you keep all important information about employees in one place.</p>
+        <p>Using this application saves time, reduces errors and ensures that employee information is always accurate
+            and up to date.</p>
+    </section>
+    <section id="new-employees">
+        {% if employees %}
+            <h2>Our newest users</h2>
+            <ol>
+                {% for employee in employees|slice(0, 10) %}
+                    <li>
+                        <article>
+                            <h4>{{ employee.name }} {{ employee.surname }}</h4>
+                            <ul>
+                                {% for role in employee.getRoles() %}
+                                    <li>{{ role.title }}</li>
+                                {% endfor %}
+                            </ul>
+                            <a href="{{ path('employee_show', { 'id': employee.id }) }}">Details</a>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </section>
+    <section id="search-employees">
+        <h2>Search employees</h2>
+        {{ render(path('employee_search_form')) }}
+    </section>
+{% endblock %}

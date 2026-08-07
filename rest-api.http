@@ -1,0 +1,143 @@
+GET http://localhost:8080/api/employee
+Host: localhost:8080
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/employee/3
+Host: localhost:8080
+Accept: application/json
+
+###
+
+#   pagination
+GET http://localhost:8080/api/employee?page=2&limit=2
+Host: localhost:8080
+Accept: application/json
+
+###
+
+#   json
+GET http://localhost:8080/api/employee?employee_search[room]=T9:348&employee_search[role][]=1&employee_search[role][]=3&employee_search[sort]=full name&employee_search[sortDirection]=DESC
+Host: localhost:8080
+Accept: application/json
+
+###
+
+#   xml
+GET http://localhost:8080/api/employee?employee_search[room]=T9:348&employee_search[role][]=1&employee_search[role][]=3&employee_search[sort]=full name&employee_search[sortDirection]=DESC
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+POST http://localhost:8080/api/employee
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Jordan",
+    "surname": "Whales",
+    "email": "jordan.whales@example.com",
+    "phone": "+420123456789",
+    "web": "https://jordan.whales.com",
+    "room": "T9:348",
+    "photo": "images/default-profile-image.jpg",
+    "description": "Some description",
+    "is_active": true,
+    "role_ids": [1,2]
+}
+
+###
+
+PUT http://localhost:8080/api/employee/18
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "NewName",
+    "surname": "NewSurname",
+    "email": "jordan.whales@example.com",
+    "phone": "+420123456789",
+    "web": "https://jordan.whales.com",
+    "room": "T9:348",
+    "photo": "images/default-profile-image.jpg",
+    "description": "Some description",
+    "is_active": true,
+    "role_ids": [1,5]
+}
+
+###
+
+PUT http://localhost:8080/api/employee/18/role
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "role_ids": [1,2,3]
+}
+
+###
+
+DELETE http://localhost:8080/api/employee/18/role/1
+Host: localhost:8080
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/account
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "JordanWhalesAccount",
+    "username": "whalesjord",
+    "password": "lmkhOINOPh;jbouHGHIJL",
+    "employee_id": 18
+}
+
+###
+
+#   (Validation)     "password": "This value is too short. It should have 8 characters or more."
+POST http://localhost:8080/api/account
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "JordanWhalesAccount",
+    "username": "whalesjord",
+    "password": "lmk",
+    "employee_id": 18
+}
+
+###
+
+POST http://localhost:8080/api/account
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "JordanWhalesAccount",
+    "username": "whalesjord",
+    "password": "lmkhOINOPh;jbouHGHIJL",
+    "valid_to": "2026-09-01 00:00:00.000",
+    "employee_id": 18
+}
+
+###
+
+GET http://localhost:8080/api/account/employee/18
+Host: localhost:8080
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/account/31
+Host: localhost:8080
+Accept: application/json

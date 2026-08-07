@@ -1,0 +1,9 @@
+<section id="delete-warning" class="hidden">
+    <section>
+        {{ form_start(accountForm) }}
+        <h1>Are you sure you want to delete this account?</h1>
+            <button class="cancel-delete-btn">Cancel</button>
+            {{ form_widget(accountForm.delete) }}
+        {{ form_end(accountForm) }}
+    </section>
+</section>

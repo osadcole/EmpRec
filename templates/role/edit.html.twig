@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Edit role' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/forms.css') }}">
+{% endblock %}
+{% block content %}
+    {{ form(roleForm) }}
+{% endblock %}

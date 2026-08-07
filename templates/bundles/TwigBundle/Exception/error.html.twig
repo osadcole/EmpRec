@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Error' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/error.css') }}">
+{% endblock %}
+{% block content %}
+    <h1>Error</h1>
+    <img src="{{ asset('images/error.png') }}" alt="Error image">
+    <p>Error code: {{ error.code }}</p>
+    <p>Error message: {{ error.message }}</p>
+    <p>
+        An error occurred — but don’t worry!
+        Try again, or head back to the <a href="{{ path('index') }}">home page</a>.
+    </p>
+{% endblock %}

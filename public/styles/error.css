@@ -1,0 +1,55 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main img {
+    max-width: 28rem;
+    width: 100%;
+    height: auto;
+}
+
+main h1 {
+    display: none;
+}
+
+main p {
+    font-size: 1.1em;
+    margin: 0.25em 2em;
+    padding: 0.4em 0.4em;
+    line-height: 1.6;
+    background: rgba(55, 96, 253, 0.08);
+    border-radius: 0.2em;
+    text-align: center;
+}
+
+main p:first-of-type {
+    font-size: 1.15em;
+    margin: 0.25em 0;
+    line-height: 1.6;
+    color: var(--error);
+    font-weight: bold;
+    background: rgba(255, 45, 45, 0.08);
+}
+
+main p:last-of-type {
+    font-style: italic;
+    margin-bottom: 2em;
+}
+
+main a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+main a:hover {
+    color: rgb(44, 64, 136);
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+    main img {
+        max-width: 15rem;
+    }
+}

@@ -1,0 +1,75 @@
+{% extends 'layout.html.twig' %}
+{% set page_title = 'Profile' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/profile.css') }}">
+{% endblock %}
+{% block content %}
+    <article>
+        <img src="{{ asset(employee.photo ?: 'images/default-profile-image.jpg') }}" alt="employee image">
+        <h1>{{ employee.name }} {{ employee.surname }}</h1>
+        <section>
+            <h2>Roles</h2>
+            {% if employee.getRoles()|length %}
+                <ul>
+                    {% for role in employee.getRoles() %}
+                        {% if role.isVisible %}
+                            <li>
+                                <a href="{{ path('role_edit', { id: role.id }) }}">{{ role.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Employee doesn't have any roles</p>
+            {% endif %}
+        </section>
+        <section>
+            <h2>Contact information</h2>
+            {% if employee.phone or employee.email or employee.web %}
+            <address>
+                <dl>
+                    {% if employee.phone is not null %}
+                        <dt>Phone</dt>
+                        <dd>
+                            <a href="tel:{{ employee.phone }}">{{ employee.phone }}</a>
+                        </dd>
+                    {% endif %}
+                    {% if employee.email is not null %}
+                        <dt>Email</dt>
+                        <dd>
+                            <a href="mailto:{{ employee.email }}">{{ employee.email }}</a>
+                        </dd>
+                    {% endif %}
+                    {% if employee.web is not null %}
+                        <dt>Web-Page</dt>
+                        <dd>
+                            <a href="{{ employee.web }}">{{ employee.web }}</a>
+                        </dd>
+                    {% endif %}
+                    {% if employee.room is not null %}
+                        <dt>Room</dt>
+                        <dd>
+                            <p>{{ employee.room }}</p>
+                        </dd>
+                    {% endif %}
+                </dl>
+            </address>
+            {% else %}
+                <p>Employee doesn't have any contact information</p>
+            {% endif %}
+        </section>
+        <section>
+            {% if employee.description %}
+                <h2>Description</h2>
+                <p>{{ employee.description|replace({'. ': '.<br>'})|raw }}</p>
+            {% endif %}
+        </section>
+        <a class="btn" href="{{ path('accounts', { 'id': employee.id }) }}">View accounts</a>
+        {% if employee.isActive %}
+            <a class="alert btn" href="{{ path('employee_deactivate', { 'id': employee.id }) }}">Deactivate</a>
+        {% else %}
+            <a class="alert btn" href="{{ path('employee_reactivate', { 'id': employee.id }) }}">Reactivate</a>
+            <a class="warning btn" href="{{ path('employee_delete', { 'id': employee.id }) }}">Delete</a>
+        {% endif %}
+    </article>
+{% endblock %}

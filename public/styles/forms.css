@@ -1,0 +1,123 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 51.25rem;
+    margin: 1.8rem auto;
+    border-radius: 1.7rem;
+    padding: 1.3rem 1.3rem 1.7rem 1.3rem;
+    box-shadow: 0 0 35px 13px rgba(0,0,0,0.1);
+}
+
+label {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    display: inline-block;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+label.required::after {
+    content: " *";
+    color: rgb(255, 91, 0);
+    font-weight: 700;
+    margin-left: 0.3rem;
+}
+
+input[type="text"], input[type="password"], input[type="email"],
+input[type="date"], input[type="search"], input[type="file"],
+select, textarea {
+    background-color: rgb(246, 246, 246);
+    color: var(--text);
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(149, 149, 149);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.6rem 0.7rem;
+    margin-bottom: 0.5rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 10rem;
+}
+
+input[type="checkbox"] {
+    font-size: 3rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    background: rgb(255, 255, 255);
+}
+
+button[type="submit"] {
+    text-decoration: none;
+    background: var(--primary);
+    color: rgb(255, 255, 255);
+    padding: 0.5em 1.5em;
+    border-radius: 0.8em;
+    box-shadow: 0 1px 4px rgba(44,86,255,0.10);
+    margin: 1rem 0.5rem;
+    font-size: 1.3em;
+    border: 0;
+    align-self: center;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--link-hover);
+}
+
+.selector-container {
+    position: relative;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.selector-roles-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.selector-suggestions {
+    position: absolute;
+    bottom: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid var(--primary);
+    border-radius: 0.5rem;
+    max-height: 10rem;
+    overflow-y: auto;
+}
+
+.suggested-role {
+    padding: 0.5rem 1rem;
+}
+
+.suggested-role:hover {
+    background-color: rgb(236, 236, 236);
+}
+
+.selected-role {
+    background-color: var(--link-hover);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.remove-role-btn::after {
+    content: '✖';
+    margin-left: 1rem;
+}
+
+.remove-role-btn:hover {
+    color: rgb(255, 118, 0);
+}
+
+.hidden {
+    display: none;
+}
